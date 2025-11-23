@@ -9,7 +9,8 @@ public class NdosiAPIPayLoadBuilder {
         JSONObject User = new JSONObject();
         User.put("firstName", TestDataGenerator.firstName);
         User.put("lastName", TestDataGenerator.lastName);
-        User.put("email",TestDataGenerator.randomEmail());
+        // use the stable generated email so login can reuse it
+        User.put("email", TestDataGenerator.email);
         User.put("password", TestDataGenerator.password);
         User.put("confirmPassword", TestDataGenerator.password);
         return User;
@@ -34,10 +35,28 @@ public class NdosiAPIPayLoadBuilder {
     //Swagger has user name and password fields for login which is wrong
     public static JSONObject LoginUserSuccessfulBody() {
         JSONObject User = new JSONObject();
-        User.put("email","Amaa.doe@example.com");
-        User.put("password", "SecurePass123!");
+        // reuse the same generated credentials used during registration
+        User.put("email", TestDataGenerator.email);
+        User.put("password", TestDataGenerator.password);
         return User;
     }
+
+    //User Profile section
+    public static JSONObject UpdateUserProfileBody() {
+        JSONObject User = new JSONObject();
+        User.put("firstName", TestDataGenerator.firstName);
+        User.put("lastName", TestDataGenerator.lastName);
+        User.put("email", TestDataGenerator.email);
+        return User;
+    }
+    public static JSONObject UpdateUserProfilepasswordBody() {
+        JSONObject User = new JSONObject();
+        User.put("current_password", TestDataGenerator.password);
+        User.put("new_password", TestDataGenerator.updatedPassword);
+        return User;
+    }
+
+
 
 
 

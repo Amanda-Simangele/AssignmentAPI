@@ -110,6 +110,23 @@ public class WeatherAPIRequestBuilder {
         return response;
 
     }
+   /* public static Response createWeatherWithExistingExternalIdResponse(){
+
+        Response response = RestAssured.given()
+                .baseUri(openWeatherBaseUrl)
+                .basePath(openWeatherPath)
+                .queryParam("appid", OPEN_WEATHER_API_KEY)
+                .contentType(ContentType.JSON)
+                .log().all()
+                .body(WeatherAPIPayLoadBuilder.createWeatherWithExistingExternalIdBody())
+                .post()
+                .then()
+                .extract().response();
+
+        weatherStationId = response.jsonPath().getString("ID");
+        return response;
+
+    }*/
 
 
 

@@ -6,11 +6,14 @@ import java.util.Locale;
 
 public class TestDataGenerator {
 
-    private static final Faker faker = new Faker(new Locale("en-US"));
+    // use Locale.US and a single Faker instance
+    private static final Faker faker = new Faker(Locale.US);
 
     public static final String firstName = faker.name().firstName();
     public static final String lastName = faker.name().lastName();
     public static final String email = generateEmail(firstName, lastName);
+    // a separate updated password for update tests
+    public static final String updatedPassword = faker.internet().password(10, 20, true, true);
     public static final String password = faker.internet().password(8, 16, true, true);
     public static final String confirmPassword = password;
 
