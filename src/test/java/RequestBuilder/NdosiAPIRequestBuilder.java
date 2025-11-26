@@ -320,6 +320,52 @@ public class NdosiAPIRequestBuilder {
 
         return response;
     }
+    public static Response GetAPIInfoUtilityAPIResponse() {
+
+        RequestSpecification req = RestAssured.given()
+                .baseUri(NdosiBaseURL)
+                .basePath("/" )
+                .contentType(ContentType.JSON)
+                .accept(ContentType.JSON)
+                .log().all();
+
+        String token = getStoredToken();
+        if (token == null || token.isBlank()) {
+            throw new IllegalStateException("No auth token available. Call LoginSuccessfulAPIResponse() and ensure it returned a valid token before calling GetMyTestimononyAPIResponse().");
+        }
+
+        req.header("Authorization", "Bearer " + token);
+
+
+        Response response = req.get()
+                .then()
+                .extract().response();
+
+        return response;
+    }
+    public static Response GetHealthChechUtilityAPIResponse() {
+
+        RequestSpecification req = RestAssured.given()
+                .baseUri(NdosiBaseURL)
+                .basePath("/health" )
+                .contentType(ContentType.JSON)
+                .accept(ContentType.JSON)
+                .log().all();
+
+        String token = getStoredToken();
+        if (token == null || token.isBlank()) {
+            throw new IllegalStateException("No auth token available. Call LoginSuccessfulAPIResponse() and ensure it returned a valid token before calling GetMyTestimononyAPIResponse().");
+        }
+
+        req.header("Authorization", "Bearer " + token);
+
+
+        Response response = req.get()
+                .then()
+                .extract().response();
+
+        return response;
+    }
 
 
 

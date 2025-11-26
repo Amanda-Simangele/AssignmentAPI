@@ -172,4 +172,29 @@ public class NdosiAPITest {
                 .statusCode(200)
                 .contentType("application/json; charset=utf-8");
     }
+
+    @Test(dependsOnMethods = "GetStatsTestimonyAPITest")
+    public static void GetAPIInfoUtilityAPITest() {
+        // Implementation for GetAPIInfoUtilityAPI Test
+        NdosiAPIRequestBuilder.GetAPIInfoUtilityAPIResponse()
+                .then()
+                .log()
+                .all()
+                .assertThat()
+                .statusCode(200)
+                .contentType("application/json; charset=utf-8");
+    }
+
+    @Test (dependsOnMethods = "GetAPIInfoUtilityAPITest")
+    public static void GetHealthCheckAPITest() {
+        // Implementation for GetHealthCheckAPI Test
+        NdosiAPIRequestBuilder.GetHealthChechUtilityAPIResponse()
+                .then()
+                .log()
+                .all()
+                .assertThat()
+                .statusCode(200)
+                .contentType("application/json; charset=utf-8");
+
+    }
 }
