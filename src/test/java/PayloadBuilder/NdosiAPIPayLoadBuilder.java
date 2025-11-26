@@ -56,6 +56,25 @@ public class NdosiAPIPayLoadBuilder {
         return User;
     }
 
+    public static JSONObject CreateTestimonialBody() {
+        JSONObject User = new JSONObject();
+        User.put("title", "Great Service!");
+        User.put("content", "This is my testimonial content describing the excellent service I received.");
+        User.put("rating", "5"); // Mismatched password
+        User.put("isPublic", "true");
+        return User;
+    }
+
+    public static JSONObject UpdateTestimonialBody() {
+        JSONObject User = new JSONObject();
+        User.put("title", "Great Service!");
+        User.put("content", "This is my updated testimonial content describing the excellent service I received.");
+        User.put("rating", "5"); // Mismatched password
+        User.put("isPublic", "true");
+        return User;
+    }
+
+
 
 
 

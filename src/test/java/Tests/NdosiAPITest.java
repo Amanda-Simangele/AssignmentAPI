@@ -106,5 +106,70 @@ public class NdosiAPITest {
                 .statusCode(200)
                 .contentType("application/json; charset=utf-8");
     }
+    @Test(dependsOnMethods = "UpdateUseProfilePasswordAPITest")
+    public static void GetPublicTestimononyUnauthorizedAPITest() {
+        // Implementation for CreateTestimononyAPI Test
+        NdosiAPIRequestBuilder.GetPublicTestimononyUnauthorizedAPIResponse()
+                .then()
+                .log()
+                .all()
+                .assertThat()
+                .statusCode(200)
+                .contentType("application/json; charset=utf-8");
+    }
+   @Test(dependsOnMethods = "GetPublicTestimononyUnauthorizedAPITest")
+    public static void CreateTestimononyAPITest() {
+        // Implementation for CreateTestimononyAPI Test
+        NdosiAPIRequestBuilder.CreateTestimononyAPIResponse()
+                .then()
+                .log()
+                .all()
+                .assertThat()
+                .statusCode(201)
+                .contentType("application/json; charset=utf-8");
+    }
+    @Test(dependsOnMethods = "CreateTestimononyAPITest")
+    public static void GetMyTestimononyAPITest() {
+        // Implementation for GetMyTestimononyAPI Test
+        NdosiAPIRequestBuilder.GetMyTestimononyAPIResponse()
+                .then()
+                .log()
+                .all()
+                .assertThat()
+                .statusCode(200)
+                .contentType("application/json; charset=utf-8");
+    }
 
+    @Test (dependsOnMethods = "GetMyTestimononyAPITest")
+    public static void UpdateTestimononyAPITest() {
+        // Implementation for DeleteTestimononyAPI Test
+        NdosiAPIRequestBuilder.UpdateTestimononyAPIResponse()
+                .then()
+                .log()
+                .all()
+                .assertThat()
+                .statusCode(200);
+    }
+    @Test (dependsOnMethods = "UpdateTestimononyAPITest")
+    public static void DeleteTestimononyAPITest() {
+        // Implementation for DeleteTestimononyAPI Test
+        NdosiAPIRequestBuilder.DeleteMyTestimononyAPIResponse()
+                .then()
+                .log()
+                .all()
+                .assertThat()
+                .statusCode(200);
+    }
+
+    @Test (dependsOnMethods = "DeleteTestimononyAPITest")
+    public static void GetStatsTestimonyAPITest() {
+        // Implementation for GetStatsTestimonyAPI Test
+        NdosiAPIRequestBuilder.GetStatsTestimononyAPIResponse()
+                .then()
+                .log()
+                .all()
+                .assertThat()
+                .statusCode(200)
+                .contentType("application/json; charset=utf-8");
+    }
 }

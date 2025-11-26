@@ -119,6 +119,11 @@ public class NdosiAPIRequestBuilder {
         Authorisations.NdosiAPI_Token = null;
     }
 
+    // small helper so tests/other builders can read the extracted ID
+    public static String getUseID() {
+        return useID;
+    }
+
     public static Response UpdateUserProfileBodyResponse() {
 
         RequestSpecification req = RestAssured.given()
@@ -160,6 +165,7 @@ public class NdosiAPIRequestBuilder {
                 .basePath("/profile")
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
+                .body(NdosiAPIPayLoadBuilder.UpdateUserProfilepasswordBody())
                 .log().all();
 
         String token = getStoredToken();
@@ -173,8 +179,151 @@ public class NdosiAPIRequestBuilder {
                 .then()
                 .extract().response();
     }
+    public static Response GetPublicTestimononyUnauthorizedAPIResponse() {
+
+        return RestAssured.given()
+                .baseUri(NdosiBaseURL)
+                .basePath("/testimonials")
+                .contentType(ContentType.JSON)
+                .accept(ContentType.JSON)
+                .log().all()
+                .get()
+                .then()
+                .extract().response();
+    }
+
+    public static Response CreateTestimononyAPIResponse() {
+
+        RequestSpecification req = RestAssured.given()
+                .baseUri(NdosiBaseURL)
+                .basePath("/testimonials")
+                .contentType(ContentType.JSON)
+                .accept(ContentType.JSON)
+                .log().all();
+
+        String token = getStoredToken();
+        if (token == null || token.isBlank()) {
+            throw new IllegalStateException("No auth token available. Call LoginSuccessfulAPIResponse() and ensure it returned a valid token before calling CreateTestimononyAPIResponse().");
+        }
+
+        req.header("Authorization", "Bearer " + token);
+
+        Response response = req
+                .body(NdosiAPIPayLoadBuilder.CreateTestimonialBody())
+                .post()
+                .then()
+                .extract().response();
+
+        useID = response.jsonPath().getString("ID");
+
+        return response;
+    }
+
+
+
+    public static Response GetMyTestimononyAPIResponse() {
+
+        RequestSpecification req = RestAssured.given()
+                .baseUri(NdosiBaseURL)
+                .basePath("/my-testimonials")
+                .contentType(ContentType.JSON)
+                .accept(ContentType.JSON)
+                .log().all();
+
+        String token = getStoredToken();
+        if (token == null || token.isBlank()) {
+            throw new IllegalStateException("No auth token available. Call LoginSuccessfulAPIResponse() and ensure it returned a valid token before calling GetMyTestimononyAPIResponse().");
+        }
+
+        req.header("Authorization", "Bearer " + token);
+
+
+        Response response = req.get()
+                .then()
+                .extract().response();
+
+        useID = response.jsonPath().getString("ID");
+
+        return response;
+    }
+
+    public static Response UpdateTestimononyAPIResponse() {
+
+        RequestSpecification req = RestAssured.given()
+                .baseUri(NdosiBaseURL)
+                .basePath("/testimonials/" + useID )
+                .contentType(ContentType.JSON)
+                .accept(ContentType.JSON)
+                .log().all();
+
+        String token = getStoredToken();
+        if (token == null || token.isBlank()) {
+            throw new IllegalStateException("No auth token available. Call LoginSuccessfulAPIResponse() and ensure it returned a valid token before calling CreateTestimononyAPIResponse().");
+        }
+
+        req.header("Authorization", "Bearer " + token);
+
+        Response response = req
+                .body(NdosiAPIPayLoadBuilder.UpdateTestimonialBody())
+                .put()
+                .then()
+                .extract().response();
+
+        useID = response.jsonPath().getString("ID");
+
+        return response;
+    }
+    public static Response DeleteMyTestimononyAPIResponse() {
+
+        RequestSpecification req = RestAssured.given()
+                .baseUri(NdosiBaseURL)
+                .basePath("/testimonials/" + useID)
+                .contentType(ContentType.JSON)
+                .accept(ContentType.JSON)
+                .log().all();
+
+        String token = getStoredToken();
+        if (token == null || token.isBlank()) {
+            throw new IllegalStateException("No auth token available. Call LoginSuccessfulAPIResponse() and ensure it returned a valid token before calling GetMyTestimononyAPIResponse().");
+        }
+
+        req.header("Authorization", "Bearer " + token);
+
+
+        Response response = req.delete()
+                .then()
+                .extract().response();
+
+        return response;
+    }
+
+    public static Response GetStatsTestimononyAPIResponse() {
+
+        RequestSpecification req = RestAssured.given()
+                .baseUri(NdosiBaseURL)
+                .basePath("/testimonials/stats" )
+                .contentType(ContentType.JSON)
+                .accept(ContentType.JSON)
+                .log().all();
+
+        String token = getStoredToken();
+        if (token == null || token.isBlank()) {
+            throw new IllegalStateException("No auth token available. Call LoginSuccessfulAPIResponse() and ensure it returned a valid token before calling GetMyTestimononyAPIResponse().");
+        }
+
+        req.header("Authorization", "Bearer " + token);
+
+
+        Response response = req.get()
+                .then()
+                .extract().response();
+
+        return response;
+    }
+
+
+
 
 
 
 }
-
