@@ -12,10 +12,14 @@ import static Common.BasePaths.openWeatherBaseUrl;
 import static Common.BasePaths.openWeatherPath;
 
 
+// Simple request builder for OpenWeather station endpoints.
+@SuppressWarnings("unused") // some helper methods are kept for tests (may not be referenced directly)
 public class WeatherAPIRequestBuilder {
 
+    // stored ID for created weather station
     static String weatherStationId;
 
+    // POST to create a weather station and capture its ID
     public static Response CreateWeatherAPIResponse(){
 
         Response response = RestAssured.given()
@@ -33,6 +37,7 @@ public class WeatherAPIRequestBuilder {
         return response;
 
     }
+    // GET a single station by stored ID
     public static Response GetWeatherAPIResponse(){
         return RestAssured.given()
                 .baseUri(openWeatherBaseUrl)
@@ -44,6 +49,7 @@ public class WeatherAPIRequestBuilder {
                 .extract().response();
 
     }
+    // GET all weather stations
     public static Response GetAllstationsWeatherAPIResponse(){
         return RestAssured.given()
                 .baseUri(openWeatherBaseUrl)
@@ -55,6 +61,7 @@ public class WeatherAPIRequestBuilder {
                 .extract().response();
 
     }
+    // PUT to update the stored weather station
     public static Response UpdateWeatherAPIResponse(){
 
       return  RestAssured.given()
@@ -69,6 +76,7 @@ public class WeatherAPIRequestBuilder {
                 .extract().response();
 
     }
+    // DELETE the stored weather station
     public static Response DeleteWeatherStationResponse(){
 
         return RestAssured.given()
@@ -81,6 +89,8 @@ public class WeatherAPIRequestBuilder {
                 .extract().response();
 
     }
+    // DELETE the station again (simulate already-deleted)
+    @SuppressWarnings("unused") // kept for idempotency testing
     public static Response DeleteAlreadyDeletedWeatherStationResponse(){
 
         return RestAssured.given()
@@ -93,6 +103,7 @@ public class WeatherAPIRequestBuilder {
                 .extract().response();
 
     }
+    // POST with missing required fields to trigger validation
     public static Response createMissingRequiredWeatherAPIResponse(){
 
         Response response = RestAssured.given()

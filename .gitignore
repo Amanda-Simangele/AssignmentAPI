@@ -12,6 +12,8 @@ allure-results/
 *.iws
 *.iml
 *.ipr
+.idea/copilotDiffState.xml
+
 
 
 ### Eclipse ###

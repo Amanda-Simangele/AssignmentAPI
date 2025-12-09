@@ -9,12 +9,14 @@ import static Common.Authorisations.REQRES_API_KEY;
 import static Common.BasePaths.*;
 
 
+// Request helper for ReqRes API: small methods that build and send HTTP requests.
 public class ResReqRequestBuilder {
 
     public static String useID;
     // store token returned by login/register
     public static String reqresToken;
 
+    // GET /api/users  - returns list of users
     public static Response getReqResUersList() {
 
         return RestAssured.given()
@@ -27,6 +29,7 @@ public class ResReqRequestBuilder {
                 .extract().response();
     }
 
+    // GET /api/users/1 - returns first user
     public static Response getReqResUser() {
 
         return RestAssured.given()
@@ -39,6 +42,7 @@ public class ResReqRequestBuilder {
                 .extract().response();
     }
 
+    // POST /api/users - create user and save returned ID
     public static Response createReqResUser() {
 
     Response response = RestAssured.given()
@@ -56,6 +60,7 @@ public class ResReqRequestBuilder {
     return response;
 
 }
+    // GET /api/users/{useID} - get user created earlier
     public static Response getSingleReqResUser() {
 
         return RestAssured.given()
@@ -67,6 +72,7 @@ public class ResReqRequestBuilder {
                 .then()
                 .extract().response();
     }
+    // PUT /api/users/{useID} - full update for the created user
     public static Response updateSingleReqResUser() {
 
         return RestAssured.given()
@@ -82,6 +88,7 @@ public class ResReqRequestBuilder {
                 .extract().response();
 
     }
+    // DELETE /api/users/{useID} - delete the created user
     public static Response deleteSingleReqResUser() {
 
         return RestAssured.given()
@@ -96,6 +103,7 @@ public class ResReqRequestBuilder {
 
     // --- New methods: login, register, logout ---
 
+    // POST /login - login and capture token if returned
     public static Response loginReqResUser() {
         Response response = RestAssured.given()
                 .baseUri(ReqResBaseUrl)
@@ -113,6 +121,7 @@ public class ResReqRequestBuilder {
         return response;
     }
 
+    // POST /register - register and capture token + id if returned
     public static Response registerReqResUser() {
         Response response = RestAssured.given()
                 .baseUri(ReqResBaseUrl)
@@ -139,6 +148,7 @@ public class ResReqRequestBuilder {
 
 
 
+    // POST /logout - logout (no body expected)
     public static Response logoutReqResUser() {
         // Preferred: POST with no body and no Content-Type header (matches Postman/most servers)
         return RestAssured.given()
@@ -154,6 +164,7 @@ public class ResReqRequestBuilder {
 
     }
 
+    // GET /unknown/3 - returns a single resource
     public static Response getResourcesReqResUserResponse() {
         return RestAssured.given()
                 .baseUri(ReqResBaseUrl)
@@ -167,7 +178,7 @@ public class ResReqRequestBuilder {
 
     }
 
-    // PUT /unknown/3
+    // PUT /unknown/3 - update resource
     public static Response putUnknownResource() {
         String payload = "{\"name\":\"morpheus\",\"year\":2024,\"color\":\"#17-2031\"}";
         return RestAssured.given()
@@ -182,7 +193,7 @@ public class ResReqRequestBuilder {
                 .extract().response();
     }
 
-    // PATCH /unknown/3
+    // PATCH /unknown/3 - partial update
     public static Response patchUnknownResource() {
         String payload = "{\"name\":\"morpheus-updated\"}";
         return RestAssured.given()
@@ -197,7 +208,7 @@ public class ResReqRequestBuilder {
                 .extract().response();
     }
 
-    // DELETE /unknown/3
+    // DELETE /unknown/3 - delete resource
     public static Response deleteUnknownResource() {
         return RestAssured.given()
                 .baseUri(ReqResBaseUrl)
@@ -209,6 +220,7 @@ public class ResReqRequestBuilder {
                 .extract().response();
     }
 
+    // GET /api/users?delay=3 - delayed response
     public static Response getReqResUersListDelay3seconds() {
 
         return RestAssured.given()
@@ -220,6 +232,7 @@ public class ResReqRequestBuilder {
                 .then()
                 .extract().response();
     }
+    // GET /api/users?page=2 - users page 2
     public static Response getReqResUsersPage2() {
         return RestAssured.given()
                 .baseUri(ReqResBaseUrl)

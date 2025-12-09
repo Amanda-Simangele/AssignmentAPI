@@ -6,6 +6,7 @@ import org.testng.annotations.Test;
 
 public class DogAPITest {
 
+    // Test to verify the API response for retrieving a list of all dog breeds
     @Test
     public void GetListOfDogsAPITest() {
         DogAPIRequestBuilder.GetListOfDogsAPIResponse()
@@ -17,6 +18,8 @@ public class DogAPITest {
                 .contentType(org.hamcrest.Matchers.containsString("application/json"));
 
     }
+
+    // Test to verify the API response for retrieving a random dog image
     @Test
     public void GetRandomDogImageAPITest() {
         DogAPIRequestBuilder.GetRandomDogImageResponse()
@@ -26,6 +29,8 @@ public class DogAPITest {
                 .statusCode(200)
                 .contentType(org.hamcrest.Matchers.containsString("application/json"));
     }
+
+    // Test to verify the API response for retrieving three random dog images
     @Test
     public void GetThreeRandomDogImagesAPITest() {
         DogAPIRequestBuilder.GetThreeRandomDogImagesResponse()
@@ -36,6 +41,7 @@ public class DogAPITest {
                 .contentType(org.hamcrest.Matchers.containsString("application/json"));
     }
 
+    // Test to verify the API response for retrieving images of hounds
     @Test //(dependsOnMethods = "GetThreeRandomDogImagesAPITest")
     public void GetHoundImagesAPITest() {
         DogAPIRequestBuilder.GetHoundImagesResponse()
@@ -46,7 +52,8 @@ public class DogAPITest {
                 .contentType(org.hamcrest.Matchers.containsString("application/json"));
     }
 
-   @Test
+    // Test to verify the API response for retrieving a random image of a hound
+    @Test
     public void GetRandomHoundImageAPITest() {
         DogAPIRequestBuilder.GetRandomHoundImageResponse()
                 .then()
@@ -56,6 +63,7 @@ public class DogAPITest {
                 .contentType(org.hamcrest.Matchers.containsString("application/json"));
     }
 
+    // Test to verify the API response for retrieving three random images of hounds
     @Test
     public void GetThreeRandomHoundImagesAPITest() {
         DogAPIRequestBuilder.GetThreeRandomHoundImagesResponse()
@@ -65,6 +73,8 @@ public class DogAPITest {
                 .statusCode(200)
                 .contentType(org.hamcrest.Matchers.containsString("application/json"));
     }
+
+    // Test to verify the API response for retrieving a list of hound breeds
     @Test
     public void GetHoundListAPITest() {
         DogAPIRequestBuilder.GetHoundListResponse()
@@ -75,6 +85,7 @@ public class DogAPITest {
                 .contentType(org.hamcrest.Matchers.containsString("application/json"));
     }
 
+    // Test to verify the API response for retrieving images of Afghan hounds
     @Test
     public void GetAfghanImagesAPITest() {
         DogAPIRequestBuilder.GetAfghanImagesResponse()
@@ -85,6 +96,7 @@ public class DogAPITest {
                 .contentType(org.hamcrest.Matchers.containsString("application/json"));
     }
 
+    // Test to verify the API response for retrieving a random image of an Afghan hound
     @Test
     public void GetRandomAfghanImageAPITest() {
         DogAPIRequestBuilder.GetRandomAfghanImageResponse()
@@ -94,6 +106,8 @@ public class DogAPITest {
                 .statusCode(200)
                 .contentType(org.hamcrest.Matchers.containsString("application/json"));
     }
+
+    // Test to verify the API response for retrieving three random images of Afghan hounds
     @Test
     public void GetThreeRandomAfghanImagesAPITest() {
         DogAPIRequestBuilder.GetThreeRandomAfghanImagesResponse()
@@ -103,9 +117,5 @@ public class DogAPITest {
                 .statusCode(200)
                 .contentType(org.hamcrest.Matchers.containsString("application/json"));
     }
-
-
-
-
 
 }

@@ -2,8 +2,10 @@ package PayloadBuilder;
 
 import org.json.simple.JSONObject;
 
+// Payload builder for ReqRes API requests
 public class ReqResPayLoadBuilder {
 
+    // Method to create a user payload
     @SuppressWarnings("unchecked")
     public static JSONObject CreateUserBody(){
         JSONObject user = new JSONObject();
@@ -12,6 +14,7 @@ public class ReqResPayLoadBuilder {
         return user;
     }
 
+    // Method to create an updated user payload
     @SuppressWarnings("unchecked")
     public static JSONObject updateeUserBody(){
         JSONObject user = new JSONObject();
@@ -20,7 +23,7 @@ public class ReqResPayLoadBuilder {
         return user;
     }
 
-    // payload for /login
+    // Method to create a login payload
     @SuppressWarnings("unchecked")
     public static JSONObject loginBody(){
         JSONObject body = new JSONObject();
@@ -29,8 +32,7 @@ public class ReqResPayLoadBuilder {
         return body;
     }
 
-    // payload for /register
-    // Ask why on swagger they also provided username field which is not used in reqres API(causes an error)
+    // Method to create a registration payload
     @SuppressWarnings("unchecked")
     public static JSONObject registerBody(){
         JSONObject body = new JSONObject();

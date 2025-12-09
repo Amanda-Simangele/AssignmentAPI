@@ -2,8 +2,11 @@ package PayloadBuilder;
 
 import org.json.simple.JSONObject;
 
+// Simple payload builder for OpenWeather station tests
+// Provides JSON bodies for create, update, and invalid payload scenarios
 public class WeatherAPIPayLoadBuilder {
 
+    // Build payload to create a new weather station
     public static JSONObject createOpenWeatherBody(){
         JSONObject station = new JSONObject();
         station.put("external_id", "SF_TEST001");
@@ -14,6 +17,7 @@ public class WeatherAPIPayLoadBuilder {
         return station;
     }
 
+    // Build payload to update an existing weather station
     public static JSONObject updateOpenWeatherBody(){
         JSONObject station = new JSONObject();
         station.put("external_id", "SF_UPD001");
@@ -23,6 +27,8 @@ public class WeatherAPIPayLoadBuilder {
         station.put("altitude", 143);
         return station;
     }
+
+    // Build payload missing required fields to test validation errors
     public static JSONObject createMissingRequiredOpenWeatherBody(){
         JSONObject station = new JSONObject();
         station.put("external_id","ext station id");
