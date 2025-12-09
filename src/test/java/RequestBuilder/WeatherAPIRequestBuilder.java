@@ -13,7 +13,6 @@ import static Common.BasePaths.openWeatherPath;
 
 
 // Simple request builder for OpenWeather station endpoints.
-@SuppressWarnings("unused") // some helper methods are kept for tests (may not be referenced directly)
 public class WeatherAPIRequestBuilder {
 
     // stored ID for created weather station
@@ -90,7 +89,6 @@ public class WeatherAPIRequestBuilder {
 
     }
     // DELETE the station again (simulate already-deleted)
-    @SuppressWarnings("unused") // kept for idempotency testing
     public static Response DeleteAlreadyDeletedWeatherStationResponse(){
 
         return RestAssured.given()
